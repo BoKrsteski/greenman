@@ -29,16 +29,7 @@ the path to the directory you want organized. default is the current one.
 
 example:
 
-`greenman o -p path/to/my/stuff`#### `-o` / `--only`:
-
-this filters for extensions that you want organized. Default is all. Only want python files organized? Use `-o .py`
-
-example:
-
-`greenman o -o .py,.txt,.json`
-
-this will only organize all python, text and json files in your current directory
-
+`greenman o -p path/to/my/stuff`
 
 this will organize the `stuff` directory.
 
