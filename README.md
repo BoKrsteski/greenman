@@ -14,7 +14,7 @@ You can download it from the `greenman_for_cli` folder in the `main` branch. The
 ### Greenman GUI 
 coming soon!
 
-## Commands:
+## Greenman CLI Commands:
 
 NOTE: order of arguments does not matter!
 
