@@ -149,7 +149,7 @@ def unwrap(path,only,deep,known):
                                     renamed=True
                                     number += 1
                                     newname = f"{number}{x}"
-                                    fileExists = True if os.path.isfile(f"{absopath}/{x}") else False
+                                    fileExists = True if os.path.isfile(f"{absopath}/{newname}") else False
                                 if renamed:
                                     os.rename(f"{absopath}/{i}/{x}",f"{absopath}/{newname}")
                                 else:
