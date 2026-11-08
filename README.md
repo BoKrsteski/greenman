@@ -28,7 +28,18 @@ NOTE: order of arguments does not matter!
 the path to the directory you want organized. default is the current one.
 
 example:
-`greenman o -p path/to/my/stuff`
+
+`greenman o -p path/to/my/stuff`#### `-o` / `--only`:
+
+this filters for extensions that you want organized. Default is all. Only want python files organized? Use `-o .py`
+
+example:
+
+`greenman o -o .py,.txt,.json`
+
+this will only organize all python, text and json files in your current directory
+
+
 this will organize the `stuff` directory.
 
 #### `-o` / `--only`:
@@ -36,7 +47,9 @@ this will organize the `stuff` directory.
 this filters for extensions that you want organized. Default is all. Only want python files organized? Use `-o .py`
 
 example:
+
 `greenman o -o .py,.txt,.json`
+
 this will only organize all python, text and json files in your current directory
 
 ### examples:
@@ -61,7 +74,9 @@ this will only organize all python, text and json files in your current director
 the path to the directory you want unwrapped. default is the current one.
 
 example:
+
 `greenman u -p path/to/my/stuff`
+
 this will unwrap the `stuff` directory.
 
 #### `-o` / `--only`:
@@ -69,7 +84,9 @@ this will unwrap the `stuff` directory.
 this filters for extensions that you want unwrapped. Default is all. Only want python files unwrapped? Use `-o .py`
 
 example:
+
 `greenman u -o .py,.txt,.json`
+
 this will only unwrap all python, text and json files in your current directory
 
 #### `-d` / `--deep`:
@@ -77,7 +94,9 @@ this will only unwrap all python, text and json files in your current directory
 use `-d` to also unwrap any following directories. If you want the contents of `/one/two/three` back in `/one`, use `-d`. Otherwhise only the contents from `/one/two` will be moved to `/one` and the contents of `one/two/three` will remain there. -d works infinitely.
 
 example:
+
 `greenman u -d`
+
 this will unwrap all contents off all following directories into this one. 
 
 
