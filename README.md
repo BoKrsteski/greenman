@@ -18,6 +18,23 @@ coming soon!
 
 NOTE: order of arguments does not matter!
 
+### `help`:
+
+### usecase:
+`help` is used to get help with certain commands or with greenman in general, though it is not yet very thorough. Additions will come soon. For now rely on the `README`
+
+### arguments:
+
+#### `command`:
+
+`help` only takes one argument, so just type `help` followed by the command you want help with to get help with that respective command. Type `help list` to see a list of commands or other items you can get help with.
+
+### examples:
+
+`greenman help` / `greenman help me` - receive general help for greenman 
+`greenman help o` / `greenman help organize` - receive help with the `o` command
+`greenman help list` - receive a list of items you can get help with
+
 ### `organize` / `o`:
 
 ### usecase:
