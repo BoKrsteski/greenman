@@ -1,7 +1,9 @@
 # Greenman
 
 have you ever had a directory full of random, unorganized stuff? No more!
+
 Introducing Greenman, the ultimate directory organization tool!
+
 ## Versions:
 
 ### Greenman CLI
