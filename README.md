@@ -101,5 +101,5 @@ example:
 
 `greenman u -k`
 
-let*s say you have 3 directories in your target: `text_files`,`crazyStuff3000` and `debian_packages`. Known will make it so that greenman will only unpack directories which it recognizes. Essentially greenman asks itself: "would I name a directory this way?". If so, it gets unwrapped. Otherwise i will be ignored. So in this situation, only `text_files` and `debian_packages` will be unwrapped.
+let's say you have 3 directories in your target: `text_files`,`crazyStuff3000` and `debian_packages`. `-k` will make it so that greenman will only unpack directories which it recognizes. Essentially greenman asks itself: "would I name a directory this way?". If so, it gets unwrapped. Otherwise it will be ignored. So in this situation, only `text_files` and `debian_packages` will be unwrapped.
 
