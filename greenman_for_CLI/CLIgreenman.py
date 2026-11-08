@@ -6,8 +6,6 @@ import math
 import time
 # GREENMAN!
 
-#TODO get pyautogui. don't know if it's in apt. careful with yay. 
-#TODO \r no workey
 helpDict = {"help": "you seriously need help with the help command?",
 "organize": "this command organizes files within the directory that you link afterwards \n\naliases:\n organize / o \n\nargs: \npath - the path to the dir you want organized. Defaults to current dir. Use '.' to point to the current dir if you want to use any additional args.\n\nonly - used to filter for filetypes that you want organized. Always the 2nd arg. list the filetypes that you want organized after the path. make sure to seperate with commas. \n\nexamples:\ngreenman o - organizes everything in current dir\ngreenman o . .txt,.py - only organizes python and text files in current dir \ngreenman o /home/user/Downloads - organizes the downloads folder."}
 def GmanHelp(command):
