@@ -91,7 +91,7 @@ this will only unwrap all python, text and json files in your current directory
 
 #### `-d` / `--deep`:
 
-use `-d` to also unwrap any following directories. If you want the contents of `/one/two/three` back in `/one`, use `-d`. Otherwhise only the contents from `/one/two` will be moved to `/one` and the contents of `one/two/three` will remain there. -d works infinitely.
+use `-d` to also unwrap any directories following the first ones in your target directory. If you want the contents of `/one/two/three` back in `/one`, use `-d`. Otherwhise only the contents from `/one/two` will be moved to `/one` and the contents of `one/two/three` will remain there. -d works infinitely.
 
 example:
 
@@ -99,5 +99,13 @@ example:
 
 this will unwrap all contents off all following directories into this one. 
 
+#### `-k` / `--known`:
 
+`-k` will only unwrap known directories, meaning directories that have matching greenman names. So if you want to only revert organization changes made by greenman, use `-k`.
+
+example:
+
+`greenman u -k`
+
+let*s say you have 3 directories in your target: `text_files`,`crazyStuff3000` and `debian_packages`. Known will make it so that greenman will only unpack directories which it recognizes. Essentially greenman asks itself: "would I name a directory this way?". If so, it gets unwrapped. Otherwise i will be ignored. So in this situation, only `text_files` and `debian_packages` will be unwrapped.
 
