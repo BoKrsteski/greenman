@@ -7,10 +7,18 @@ import time
 # GREENMAN!
 
 helpDict = {"help": "you seriously need help with the help command?",
-"organize": "this command organizes files within the directory that you link afterwards \n\naliases:\n organize / o \n\nargs: \npath - the path to the dir you want organized. Defaults to current dir. Use '.' to point to the current dir if you want to use any additional args.\n\nonly - used to filter for filetypes that you want organized. Always the 2nd arg. list the filetypes that you want organized after the path. make sure to seperate with commas. \n\nexamples:\ngreenman o - organizes everything in current dir\ngreenman o . .txt,.py - only organizes python and text files in current dir \ngreenman o /home/user/Downloads - organizes the downloads folder."}
+"organize": "this command organizes files within the directory that you link afterwards \n\naliases:\n organize / o \n\nargs: \n-p / --path - the path to the dir you want organized. Defaults to current dir.\n\n-o / --only - used to filter for filetypes that you want organized. List the filetypes that you want organized after the path. make sure to seperate with commas. \n\nexamples:\ngreenman o   - organizes everything in current dir\ngreenman o .txt,.py   - only organizes python and text files in current dir \ngreenman o -p /home/user/Downloads   - organizes the downloads folder."}
+helpAliases = {"o": "organize"}
 def GmanHelp(command):
     if command in helpDict.keys():
         print(helpDict.get(command))
+    elif command == "list":
+        print("list of help items:\n-------------------")
+        for i in helpDict.keys():
+            print(i)
+        print("-------------------\nuse - 'greenman help (item)' - to open it's help entry")
+    elif command in helpAliases.keys():
+        print(helpDict.get(helpAliases.get(command)))
     else:
         print("unknown command")
 
@@ -196,7 +204,4 @@ if args.command in commands.keys():
         params=tuple(paramlist)
     else: 
         params = ((getattr(args,commands.get(args.command), "nope")),)
-        print(type(params))
-        print(args.item)
-        print(commands.get(args.command))
     args.func(*params)
