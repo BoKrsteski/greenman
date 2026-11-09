@@ -88,15 +88,24 @@ def unwrapunit(i,absopath):
     
 
 
-def unwrap(path,only,deep,known):
+def unwrap(path,only,deep,known,onlydir):
     absopath = os.path.abspath(path)
+    do_not_execute = False
     if not os.path.isdir(path):
-        print("target isn't a directory!")
+        print("FATAL: target isn't a directory!")
     else:
-        dirs = [f for f in os.listdir(path) if os.path.isdir(os.path.join(path, f))]
+        firstOnlydir=onlydir.replace("/","").split(",")
+        onlydir =onlydir.split(",")
+        dirs = [f for f in os.listdir(path) if os.path.isdir(os.path.join(path, f))] if onlydir[0] == "all" and len(onlydir) == 1 else [f for f in os.listdir(path) if os.path.isdir(os.path.join(path, f)) and f in firstOnlydir]
+        if not set(dirs) == set(onlydir) and len(onlydir) > len(dirs):
+            diff = [x for x in onlydir if x not in dirs]
+            print(f"WARNING: unresolved dirnames: '{",".join(diff)}' not found!\nContinuing with existing ones...")
+        s = "s" if len(onlydir) > 1 else ""
+        if len(dirs) == 0:
+            print(f"FATAL: No dirs by the name{s} '{",".join(onlydir)}' were found.")
+            do_not_execute = True
         ventBuzzWords = {}
         vent = False
-        do_not_execute = False
         if not only =="all":
             only = only.replace(" ","").split(",")
             for i in only:
@@ -111,6 +120,8 @@ def unwrap(path,only,deep,known):
             if vent:
                 loc = "current dir" if path =="." else path
                 print("only unwrapping " + " , ".join(ventBuzzWords.keys()) + " in " + loc + "...")
+            elif onlydir[0] != "all":
+                print(f"only unwrapping the '{",".join(onlydir)}' dir{s}...")
             elif path == ".":
                 print("unwrapping current dir...")
             else:
