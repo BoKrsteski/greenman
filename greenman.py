@@ -6,6 +6,8 @@ import math
 import time
 # GREENMAN!
 
+#TODO add theme search (e.g. "coolstuff": coolstuff.txt,coolstuff.py etc will be put into /coolstuff/ )
+
 buzzwords = {".iso":"ISO_images",".py": "python_scripts", ".png": "images", ".jpg": "images",".webp": "images", ".gif": "gifs", ".ico":"icons", ".exe": "executables",".deb": "debian_packages",".zip": "ZIPs",".txt": "text_files",".tar.gz":"tarball_archives",".mov":"videos",".mp4":"videos",".mp3":"audio",".wav":"audio"}
 
 def organize(path,only):
