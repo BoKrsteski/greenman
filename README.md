@@ -12,7 +12,7 @@ Greenman's initial version was a CLI application that could be run anywhere by b
 You can download it from the `greenman_for_cli` folder in the `main` branch. The initial version is only intended for unix based OSs and the PATH implementation has not been automated yet. that's coming soon!
 
 ### Greenman GUI 
-coming soon!
+in development now. coming soon!
 
 ## Greenman CLI Commands:
 
