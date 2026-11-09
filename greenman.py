@@ -6,7 +6,7 @@ import math
 import time
 # GREENMAN!
 
-
+buzzwords = {".iso":"ISO_images",".py": "python_scripts", ".png": "images", ".jpg": "images",".webp": "images", ".gif": "gifs", ".ico":"icons", ".exe": "executables",".deb": "debian_packages",".zip": "ZIPs",".txt": "text_files",".tar.gz":"tarball_archives",".mov":"videos",".mp4":"videos",".mp3":"audio",".wav":"audio"}
 
 def organize(path,only):
     if not os.path.isdir:
@@ -14,7 +14,6 @@ def organize(path,only):
     else:
         files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
         ventBuzzWords = {}
-        buzzwords = {".py": "python_scripts", ".png": "images", ".jpg": "images",".webp": "images", ".gif": "gifs", ".ico":"icons", ".exe": "executables",".deb": "debian_packages",".zip": "ZIPs",".txt": "text_files",".tar.gz":"tarball_archives",".mov":"videos",".mp4":"videos",".mp3":"audio",".wav":"audio"}
         vent = False
         do_not_execute = False
         if not only =="all":
@@ -92,7 +91,6 @@ def unwrap(path,only,deep,known):
     else:
         dirs = [f for f in os.listdir(path) if os.path.isdir(os.path.join(path, f))]
         ventBuzzWords = {}
-        buzzwords = {".py": "python_scripts", ".png": "images", ".jpg": "images",".webp": "images", ".gif": "gifs", ".ico":"icons", ".exe": "executables",".deb": "debian_packages",".zip": "ZIPs",".txt": "text_files",".tar.gz":"tarball_archives",".mov":"videos",".mp4":"videos",".mp3":"audio",".wav":"audio"}
         vent = False
         do_not_execute = False
         if not only =="all":
