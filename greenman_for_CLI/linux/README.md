@@ -2,7 +2,9 @@
 
 ## set up:
 
-to set up Greenman CLI in your linux terminal, ensure that `PATHbinder.sh`, as well as `CLIgreenman.py` have the `+x` permission, then execute the .sh file. Usually this doesn't require superuser rights.
+to set up Greenman CLI in your linux terminal, ensure that `PATHbinder.sh`, as well as `CLIgreenman.py` have the `+x` permission, then execute `PATHbinder.sh`.
+
+ Usually this doesn't require superuser rights.
 
 After you've done that, check if greenman works by typing any greenman command (e.g. `greenman help help`) in your CLI. This should now work in any directory. 
 
