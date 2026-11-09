@@ -7,11 +7,12 @@ import time
 # GREENMAN!
 
 #TODO add theme search (e.g. "coolstuff": coolstuff.txt,coolstuff.py etc will be put into /coolstuff/ )
+#TODO use os.path.join for my paths.
 
 buzzwords = {".iso":"ISO_images",".py": "python_scripts", ".png": "images", ".jpg": "images",".webp": "images", ".gif": "gifs", ".ico":"icons", ".exe": "executables",".deb": "debian_packages",".zip": "ZIPs",".txt": "text_files",".tar.gz":"tarball_archives",".mov":"videos",".mp4":"videos",".mp3":"audio",".wav":"audio"}
 
 def organize(path,only):
-    if not os.path.isdir:
+    if not os.path.isdir(path):
         print("target isn't a directory!")
     else:
         files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
@@ -40,7 +41,6 @@ def organize(path,only):
             for i in files:
                 curCyc += 1
                 fileamt = len(files)
-                calcCurCyc = curCyc *100/fileamt/10
                 progress = math.floor(curCyc/len(files)*30)
                 remainder = 30 - progress
                 prprint=progress-1 if progress != 30 else progress
@@ -51,38 +51,41 @@ def organize(path,only):
                 for u in finder.keys():
                     if i.endswith(u):
                         selDir= finder.get(u)
-                        os.makedirs(selDir, exist_ok=True)
-                        os.rename(i,f"{path}/{selDir}/{i}")
-                if os.access(f"{path}/{i}", os.X_OK):
-                    os.makedirs("executables",exist_ok = True)
-                    os.rename(i,f"{path}/executables/{i}")
+                        os.makedirs(os.path.join(path,selDir), exist_ok=True)
+                        os.rename(os.path.join(path,i), os.path.join(path,selDir,i))
+                        break
+                else:
+                    if os.access(os.path.join(path,i), os.X_OK):
+                        os.makedirs(os.path.join(path,"executables"),exist_ok = True)
+                        os.rename(os.path.join(path,i),os.path.join(path,"executables",i))
             print()
 
             print("done!")
 
 def unwrapunit(i,absopath):
-    for x in [f for f in os.listdir(absopath + f"/{i}")]:
-        if os.path.isdir(f"{absopath}/{i}/{x}"):
-            unwrapunit(x,f"{absopath}/{i}")
+    for x in [f for f in os.listdir(os.path.join(absopath,i))]:
+        aix = os.path.join(absopath,i,x)
+        if os.path.isdir(aix):
+            unwrapunit(x,os.path.join(absopath,i))
             empty = True
-            for _ in os.scandir(f"{absopath}/{i}/{x}"):
+            for _ in os.scandir(aix):
                 empty = False
                 break
             if empty:
-                os.rmdir(f"{absopath}/{i}/{x}")
-        elif os.path.isfile(f"{absopath}/{i}/{x}"):
+                os.rmdir(aix)
+        elif os.path.isfile(aix):
             number=2
-            fileExists = True if os.path.isfile(f"{absopath}/{x}") else False
+            fileExists = True if os.path.isfile(os.path.join(absopath,x)) else False
             renamed = False
             while fileExists:
                 renamed = True
                 number += 1
                 newname = f"{number}{x}"
-                fileExists = True if os.path.isfile(f"{absopath}/{newname}") else False
+                fileExists = True if os.path.isfile(os.path.join(absopath,newname)) else False
             if renamed:
-                os.rename(f"{absopath}/{i}/{x}",f"{absopath}/{newname}")
+                os.rename(aix,os.path.join(absopath,newname))
             else:
-                os.rename(f"{absopath}/{i}/{x}",f"{absopath}/{x}")
+                os.rename(aix,os.path.join(absopath,x))
     
 
 
@@ -117,7 +120,6 @@ def unwrap(path,only,deep,known):
             for i in dirs:
                 curCyc += 1
                 diramt = len(dirs)
-                calcCurCyc = curCyc *100/diramt/10
                 progress = math.floor(curCyc/len(dirs)*30)
                 remainder = 30 - progress
                 prprint=progress-1 if progress != 30 else progress
@@ -134,25 +136,26 @@ def unwrap(path,only,deep,known):
                         if deep:
                             unwrapunit(i,absopath)
                         else:    
-                            for x in [f for f in os.listdir(absopath + f"/{i}") if os.path.isfile(os.path.join(absopath+f"/{i}", f))]:
+                            for x in [f for f in os.listdir(os.path.join(absopath,i)) if os.path.isfile(os.path.join(absopath,i, f))]:
+                                aix = os.path.join(absopath,i,x)
                                 number=1
-                                fileExists = True if os.path.isfile(f"{absopath}/{x}") else False
+                                fileExists = True if os.path.isfile(os.path.join(absopath,x)) else False
                                 renamed=False
                                 while fileExists:
                                     renamed=True
                                     number += 1
                                     newname = f"{number}{x}"
-                                    fileExists = True if os.path.isfile(f"{absopath}/{x}") else False
+                                    fileExists = True if os.path.isfile(os.path.join(absopath,newname)) else False
                                 if renamed:
-                                    os.rename(f"{absopath}/{i}/{x}",f"{absopath}/{newname}")
+                                    os.rename(aix,os.path.join(absopath,newname))
                                 else:
-                                    os.rename(f"{absopath}/{i}/{x}",f"{absopath}/{x}")
+                                    os.rename(aix,os.path.join(absopath,x))
                 empty = True
-                for _ in os.scandir(i):
+                for _ in os.scandir(os.path.join(absopath,i)):
                     empty = False
                     break
                 if empty:
-                    os.rmdir(i)
+                    os.rmdir(os.path.join(absopath,i))
             print()    
 
             print("done!")
