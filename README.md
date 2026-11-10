@@ -125,7 +125,7 @@ let's say you have 3 directories in your target: `text_files`,`crazyStuff3000` a
 
 example:
 
-if you have a dir called `coolstuff` in the current directory, you csn filter for it using:
+if you have a dir called `coolstuff` in the current directory, you can filter for it using:
 
 `greenman u -D coolstuff`
 
