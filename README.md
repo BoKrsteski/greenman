@@ -120,3 +120,15 @@ example:
 
 let's say you have 3 directories in your target: `text_files`,`crazyStuff3000` and `debian_packages`. `-k` will make it so that greenman will only unpack directories which it recognizes. Essentially greenman asks itself: "would I name a directory this way?". If so, it gets unwrapped. Otherwise it will be ignored. So in this situation, only `text_files` and `debian_packages` will be unwrapped.
 
+#### `-D` / `—-onlydir`:
+`-D` is used to filter for certain directory names to be unwrapped. Deep version coming soon.
+
+example:
+
+if you have a dir called `coolstuff` in the current directory, you csn filter for it using:
+
+`greenman u -D coolstuff`
+
+this will only unwrap the `coolstuff` directory.
+
+
