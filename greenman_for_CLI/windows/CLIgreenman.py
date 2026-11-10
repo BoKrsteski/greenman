@@ -40,11 +40,12 @@ p.add_argument("-p", "--path", type=str, default=".",help="the path to the direc
 p.add_argument("-o","--only",type=str,default="all",help="'only' is used if you want to only unwrap certain files.")
 p.add_argument("-d","--deep", action="store_true")
 p.add_argument("-k","--known", action="store_true")
+p.add_argument("-D","--onlydir",type=str,default="all",help="only unwraps dirs mentioned in here")
 p.set_defaults(func=unwrap)
 
 args = parser.parse_args()
 
-commands = {"organize": ["path","only"],"o": ["path","only"],"help": "item","unwrap":["path","only","deep","known"],"u":["path","only","deep","known"]}
+commands = {"organize": ["path","only"],"o": ["path","only"],"help": "item","unwrap":["path","only","deep","known","onlydir"],"u":["path","only","deep","known","onlydir"]}
 if args.command in commands.keys():
     commandContents = commands.get(args.command)
     if isinstance(commandContents, list):
