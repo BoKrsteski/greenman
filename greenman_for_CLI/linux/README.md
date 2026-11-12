@@ -10,7 +10,7 @@ If they don't have the `+x` permission, run `chmod +x PATHbinder.sh CLIgreenman.
 
 (Although `greenmancore.py` is extremely important. It doesnt need any permissions, as it gets imported by `CLIgreenman.py`)
 
-then execute `PATHbinder.sh`.
+Make sure all files are in the same directory (preferably even in their very own one). then execute `PATHbinder.sh`.
 
 Usually this doesn't require superuser rights.
 
