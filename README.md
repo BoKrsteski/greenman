@@ -14,6 +14,12 @@ You can download it from the `greenman_for_cli` folder in the `main` branch. The
 ### Greenman GUI 
 in development now. coming soon!
 
+## How to install:
+
+you can directly download all files for the CLI version in the __releases__ tab. Or you can only get the files you need from the folder in the source code.
+
+The GUI version will also be available in the __releases__ tab as an executable.
+
 ## Greenman CLI Commands:
 
 NOTE: order of arguments does not matter!
