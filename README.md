@@ -131,4 +131,12 @@ if you have a dir called `coolstuff` in the current directory, you can filter fo
 
 this will only unwrap the `coolstuff` directory.
 
+### `knownlist` / `klist` / `kl`:
 
+### usecase:
+
+`kl` displays all extensions and dirnames known to greenman. useful if you want to see what `greenman u -k` includes. (executables for linux are not shown because greenman checks for permission rights not extensions.)
+
+### arguments:
+
+None lol
