@@ -6,7 +6,11 @@ __Documentation for OS specific installs is below__
 
 # how to install:
 
-First, get `greenmancore.py` and `CLIgreenman.py` from this directory and put them in the same (preferrably new) directory
+First, get `greenmancore.py` and `CLIgreenman.py` from this directory and put them in the same (preferrably new) directory.
+
+Then, go on to downloading your OS specific PATHbinder.
+
+__They are found in the `OS_specific` folder__
 
 # which version to choose:
 
@@ -32,6 +36,8 @@ That's the PATH magic for ya :)
 ## set up:
 
 First, Download all the contents of this folder (except the README)
+
+then, get the TODO
 
 Now, to set up Greenman CLI in your linux terminal, ensure that `PATHbinder.sh`, as well as `CLIgreenman.py` have the `+x` permission. They should have it by default but you never know.
 
