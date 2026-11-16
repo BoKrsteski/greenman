@@ -35,12 +35,21 @@ jobs:
           find ${{ env.TARGET_DIR }} -type d -name '__pycache__' -exec rm -rf {} +
           zip -r greenman_cli.zip ${{ env.TARGET_DIR }}/
 
+      - name: Get next version
+        if: steps.filter.outputs.src == 'true'
+        id: version
+        run: |
+          count=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/releases?per_page=100" \
+            | jq '[.[] | select(.tag_name | startswith("CLI-VERSION-"))] | length')
+          echo "num=$((count + 1))" >> "$GITHUB_OUTPUT"
+
       - name: Create Release
         if: steps.filter.outputs.src == 'true'
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: CLI-VERSION-${{ github.run_number }}
-          name: "Greenman CLI version: ${{ github.run_number }}"
+          tag_name: CLI-VERSION-${{ steps.version.outputs.num }}
+          name: "Greenman CLI version: ${{ steps.version.outputs.num }}"
           files: greenman_cli.zip
           draft: false
           prerelease: false
