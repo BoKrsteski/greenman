@@ -146,3 +146,7 @@ this will only unwrap the `coolstuff` directory.
 ### arguments:
 
 None lol
+
+### example:
+
+`greenman kl`   -   displays all known extensions and director names
