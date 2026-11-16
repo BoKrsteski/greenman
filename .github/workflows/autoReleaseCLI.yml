@@ -1,0 +1,39 @@
+name: auto-releaseCLI
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  detect-and-release:
+    runs-on: ubuntu-latest
+    env:
+      TARGET_DIR: 'greenman_for_CLI'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for changes in target directory
+        id: filter
+        uses: dorny/paths-filter@v4
+        with:
+          filters: |
+            src:
+              - '${{ env.TARGET_DIR }}/**'
+
+      - name: Create Release
+        if: steps.filter.outputs.src == 'true'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: CLI-VERSION-${{ github.run_number }}   
+          name: Greenman CLI version:  ${{ github.run_number }}
+          files: |
+            ${{ env.TARGET_DIR }}/**
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
