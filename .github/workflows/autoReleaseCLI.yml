@@ -21,9 +21,10 @@ jobs:
         id: filter
         uses: dorny/paths-filter@v4
         with:
+          base: main
           filters: |
             src:
-              - '${{ env.TARGET_DIR }}/**'
+              - '${{ env.TARGET_DIR }}/**'   
 
       - name: Create Release
         if: steps.filter.outputs.src == 'true'
