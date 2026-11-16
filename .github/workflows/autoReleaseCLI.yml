@@ -30,7 +30,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: CLI-VERSION-${{ github.run_number }}   
-          name: Greenman CLI version:  ${{ github.run_number }}
+          name: "Greenman CLI version:  ${{ github.run_number }}"
           files: |
             ${{ env.TARGET_DIR }}/**
           draft: false
