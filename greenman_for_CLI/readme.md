@@ -4,6 +4,9 @@ here you can get the necessary files to connect GreenmanCLI to your PATH.
 
 __Documentation for OS specific installs is below__
 
+# how to install:
+
+First, get `greenmancore.py` and `CLIgreenman.py` from this directory and put them in the same (preferrably new) directory
 
 # which version to choose:
 
