@@ -3,7 +3,7 @@ name: auto-releaseCLI
 on:
   push:
     branches:
-      - main 
+      - main
 
 jobs:
   detect-and-release:
@@ -26,16 +26,22 @@ jobs:
           base: main
           filters: |
             src:
-              - '${{ env.TARGET_DIR }}/**'   
+              - '${{ env.TARGET_DIR }}/**'
+
+      - name: Clean and package
+        if: steps.filter.outputs.src == 'true'
+        run: |
+          find ${{ env.TARGET_DIR }} -type f -name '*.pyc' -delete
+          find ${{ env.TARGET_DIR }} -type d -name '__pycache__' -exec rm -rf {} +
+          zip -r greenman_cli.zip ${{ env.TARGET_DIR }}/
 
       - name: Create Release
         if: steps.filter.outputs.src == 'true'
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: CLI-VERSION-${{ github.run_number }}   
-          name: "Greenman CLI version:  ${{ github.run_number }}"
-          files: |
-            ${{ env.TARGET_DIR }}/**
+          tag_name: CLI-VERSION-${{ github.run_number }}
+          name: "Greenman CLI version: ${{ github.run_number }}"
+          files: greenman_cli.zip
           draft: false
           prerelease: false
         env:
