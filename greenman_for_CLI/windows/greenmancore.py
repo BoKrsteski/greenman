@@ -117,11 +117,13 @@ def unwrap(path,only,deep,known,onlydir):
                 print(f"couldn't find only-item '{only}'")
                 do_not_execute = True
         if not do_not_execute:
+            loc = "current dir" if path =="." else path
             if vent:
-                loc = "current dir" if path =="." else path
                 print("only unwrapping " + " , ".join(ventBuzzWords.keys()) + " in " + loc + "...")
             elif onlydir[0] != "all":
                 print(f"only unwrapping the '{",".join(onlydir)}' dir{s}...")
+            elif known:
+                print("only unwrapping known dirs in " + loc +"...")
             elif path == ".":
                 print("unwrapping current dir...")
             else:
@@ -160,12 +162,16 @@ def unwrap(path,only,deep,known,onlydir):
                                     os.rename(aix,os.path.join(absopath,newname))
                                 else:
                                     os.rename(aix,os.path.join(absopath,x))
-                empty = True
-                for _ in os.scandir(os.path.join(absopath,i)):
-                    empty = False
-                    break
-                if empty:
-                    os.rmdir(os.path.join(absopath,i))
+                        empty = True
+                        for _ in os.scandir(os.path.join(absopath,i)):
+                            empty = False
+                            break
+                        if empty:
+                            os.rmdir(os.path.join(absopath,i))
             print()    
 
             print("done!")
+
+def knownlist():
+    for i,u in buzzwords.items():
+        print(f"{i} -> {u}")
