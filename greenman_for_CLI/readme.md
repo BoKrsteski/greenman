@@ -19,15 +19,17 @@ choose the version that matches your OS. The linux version is compatible with mo
 # Greenman CLI windows version
 ## set up:
 
-First, install all files in this directory (except for the README)
+First, install both python files from this directory 
 
-Now, to set up Greenman CLI in your windows terminal, ensure that installer.bat, as well as CLIgreenman.py have execution permissions.
+then, install `WINDOWS_greenman-PATHbinder.bat` from the __OS_specific__ folder.
 
-(Although greenmancore.py is extremely important. It doesnt need any permissions, as it gets imported by CLIgreenman.py)
+Now, to set up Greenman CLI in your windows terminal, ensure that `WINDOWS_greenman-PATHbinder.bat`, as well as `CLIgreenman.py` have execution permissions.
 
-Make sure all files are in the same directory (preferably even in their very own one). then execute installer.bat
+(Although `greenmancore.py` is extremely important. It doesn't need any permissions, as it gets imported by `CLIgreenman.py`)
 
-After you've done that, check if greenman works by typing any greenman command (e.g. greenman help help) in your CLI. This should now work in any directory.
+Make sure all files are in the same directory (preferably even in their very own one). then execute `WINDOWS_greenman-PATHbinder.bat`
+
+After you've done that, check if greenman works by typing any greenman command (e.g. `greenman help help`) in your CLI. This should now work in any directory.
 
 That's the PATH magic for ya :)
 
@@ -35,17 +37,17 @@ That's the PATH magic for ya :)
 
 ## set up:
 
-First, Download all the contents of this folder (except the README)
+First, install both python files from this directory 
 
-then, get the TODO
+then, get the `LINUX_greenman-PATHbinder.sh` file from the __OS_specific__ folder.
 
-Now, to set up Greenman CLI in your linux terminal, ensure that `PATHbinder.sh`, as well as `CLIgreenman.py` have the `+x` permission. They should have it by default but you never know.
+Now, to set up Greenman CLI in your linux terminal, ensure that `LINUX_greenman-PATHbinder.sh`, as well as `CLIgreenman.py` have the `+x` permission. They should have it by default but you never know.
 
-If they don't have the `+x` permission, run `chmod +x PATHbinder.sh CLIgreenman.py`. Now they should have it.
+If they don't have the `+x` permission, run `chmod +x LINUX_greenman-PATHbinder.sh CLIgreenman.py`. Now they should have it.
 
 (Although `greenmancore.py` is extremely important. It doesnt need any permissions, as it gets imported by `CLIgreenman.py`)
 
-Make sure all files are in the same directory (preferably even in their very own one). then execute `PATHbinder.sh`.
+Make sure all files are in the same directory (preferably even in their very own one). then execute `LINUX_greenman-PATHbinder.sh`.
 
 Usually this doesn't require superuser rights.
 
