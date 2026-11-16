@@ -8,6 +8,8 @@ on:
 jobs:
   detect-and-release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       TARGET_DIR: 'greenman_for_CLI'
 
