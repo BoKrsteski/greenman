@@ -16,7 +16,7 @@ in development now. coming soon!
 
 ## How to install:
 
-you can directly download all files for the CLI version in the __releases__ tab. Or you can only get the files you need from the folder in the source code.
+you can directly download all files for the CLI version in the __releases__ tab. Or you can only get the files you need from the folder in the source code. The readme will contain further instructions.
 
 The GUI version will also be available in the __releases__ tab as an executable.
 
