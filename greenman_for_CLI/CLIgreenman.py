@@ -5,6 +5,8 @@ import argparse
 
 # GREENMAN!
 
+#TODO help documentation!!!!
+
 helpDict = {"help": "you seriously need help with the help command?",
 "organize": "this command organizes files within the directory that you link afterwards \n\naliases:\n organize / o \n\nargs: \n-p / --path - the path to the dir you want organized. Defaults to current dir.\n\n-o / --only - used to filter for filetypes that you want organized. List the filetypes that you want organized after the path. make sure to seperate with commas. \n\nexamples:\ngreenman o   - organizes everything in current dir\ngreenman o .txt,.py   - only organizes python and text files in current dir \ngreenman o -p /home/user/Downloads   - organizes the downloads folder."}
 helpAliases = {"o": "organize"}
