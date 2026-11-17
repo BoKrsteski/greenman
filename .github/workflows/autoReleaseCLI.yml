@@ -1,4 +1,4 @@
-name: auto-releaseCLI
+name: Auto-Release CLI
 
 on:
   push:
@@ -12,6 +12,7 @@ jobs:
       contents: write
     env:
       TARGET_DIR: 'greenman_for_CLI'
+      TAG_PREFIX: 'CLI-VERSION-'
 
     steps:
       - name: Checkout code
@@ -44,7 +45,8 @@ jobs:
           response=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
             "https://api.github.com/repos/${{ github.repository }}/releases?per_page=100")
           
-          count=$(echo "$response" | jq 'if type == "array" then [.[] | select(.tag_name | startswith("CLI-VERSION-"))] | length else 0 end')
+          count=$(echo "$response" | jq --arg prefix "${{ env.TAG_PREFIX }}" \
+            'if type == "array" then [.[] | select(.tag_name | startswith($prefix))] | length else 0 end')
           
           echo "num=$((count + 1))" >> "$GITHUB_OUTPUT"
 
@@ -53,7 +55,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: CLI-VERSION-${{ steps.version.outputs.num }}
-          name: "Greenman CLI version: ${{ steps.version.outputs.num }}"
+          name: "Greenman CLI Version ${{ steps.version.outputs.num }}"
           files: greenman_cli.zip
           draft: false
           prerelease: false
