@@ -7,8 +7,8 @@ import argparse
 
 #TODO help documentation!!!!
 
-helpDict = {"help": "you seriously need help with the help command?",
-"organize": "this command organizes files within the directory that you link afterwards \n\naliases:\n organize / o \n\nargs: \n-p / --path - the path to the dir you want organized. Defaults to current dir.\n\n-o / --only - used to filter for filetypes that you want organized. List the filetypes that you want organized after the path. make sure to seperate with commas. \n\nexamples:\ngreenman o   - organizes everything in current dir\ngreenman o .txt,.py   - only organizes python and text files in current dir \ngreenman o -p /home/user/Downloads   - organizes the downloads folder."}
+helpDict = {"me":"Alright then. Here's some general tips & tricks for using greenman.\n\nNOTE: to see further help entries, type 'greenman help list'\n\nthe base components to use greenman are the ORGANIZE and UNWRAP functions.\n\nto receive further information on each, type 'greenman help organize' or 'greenman help unwrap'\n\nI pray that this will help you. Otherwise there is no hope.","help": "you seriously need help with the help command?",
+"organize": "this command organizes files within the directory that you link afterwards \n\naliases:\norganize / o \n\nargs: \n-p / --path - the path to the dir you want organized. Defaults to current dir.\n\n-o / --only - used to filter for filetypes that you want organized. List the filetypes that you want organized after the path. make sure to seperate with commas. \n\nexamples:\ngreenman o   - organizes everything in current dir\ngreenman o .txt,.py   - only organizes python and text files in current dir \ngreenman o -p /home/user/Downloads   - organizes the downloads folder."}
 helpAliases = {"o": "organize"}
 def GmanHelp(command):
     if command in helpDict.keys():

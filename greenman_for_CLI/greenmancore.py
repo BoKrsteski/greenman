@@ -162,12 +162,19 @@ def unwrap(path,only,deep,known,onlydir):
                                     os.rename(aix,os.path.join(absopath,newname))
                                 else:
                                     os.rename(aix,os.path.join(absopath,x))
-                        empty = True
-                        for _ in os.scandir(os.path.join(absopath,i)):
-                            empty = False
-                            break
-                        if empty:
-                            os.rmdir(os.path.join(absopath,i))
+                for z in finder.keys():
+                    if known or only != "all":
+                        do = True if i == finder.get(z) else False
+                    else:
+                        do = True
+                    if do:
+                        if os.path.exists(os.path.join(absopath,i)):
+                            empty = True
+                            for _ in os.scandir(os.path.join(absopath,i)):
+                                empty = False
+                                break
+                            if empty:
+                                os.rmdir(os.path.join(absopath,i))
             print()    
 
             print("done!")
