@@ -23,6 +23,9 @@ def GmanHelp(command):
     else:
         print("unknown command")
 
+def knownlist():
+    for i,u in buzzwords.items():
+        print(f"{i} -> {u}")
 
 
 parser = argparse.ArgumentParser(prog='greenman')
