@@ -141,7 +141,7 @@ this will only unwrap the `coolstuff` directory.
 
 ### usecase:
 
-`kl` displays all extensions and dirnames known to greenman. useful if you want to see what `greenman u -k` includes. (executables for linux are not shown because greenman checks for permission rights not extensions.)
+`kl` displays all extensions and dirnames known to greenman. useful if you want to see what `greenman u -k` includes. (executables for linux are not shown because greenman checks for permission rights, not extensions.)
 
 ### arguments:
 
