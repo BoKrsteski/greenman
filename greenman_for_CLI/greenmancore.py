@@ -178,7 +178,3 @@ def unwrap(path,only,deep,known,onlydir):
             print()    
 
             print("done!")
-
-def knownlist():
-    for i,u in buzzwords.items():
-        print(f"{i} -> {u}")
