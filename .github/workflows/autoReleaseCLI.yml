@@ -12,7 +12,6 @@ jobs:
       contents: write
     env:
       TARGET_DIR: 'greenman_for_CLI'
-      TAG_PREFIX: 'CLI-VERSION-'
 
     steps:
       - name: Checkout code
@@ -41,23 +40,43 @@ jobs:
         id: version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
         run: |
           response=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
             "https://api.github.com/repos/${{ github.repository }}/releases?per_page=100")
-          
-          count=$(echo "$response" | jq --arg prefix "${{ env.TAG_PREFIX }}" \
-            'if type == "array" then [.[] | select(.tag_name | startswith($prefix))] | length else 0 end')
-          
-          echo "num=$((count + 1))" >> "$GITHUB_OUTPUT"
+
+          latest_tag=$(echo "$response" | jq -r \
+            '[.[] | select(.tag_name | test("^v[0-9]+\\.[0-9]+\\.[0-9]+$"))] | sort_by(.published_at) | last | .tag_name // ""')
+
+
+          if [[ -n "$latest_tag" ]]; then
+            version_str="${latest_tag#v}"
+            IFS='.' read -r major minor patch <<< "$version_str"
+          else
+            major=0; minor=0; patch=0
+          fi
+
+
+          if [[ "$COMMIT_MESSAGE" =~ ^M ]]; then
+            major=$((major + 1)); minor=0; patch=0
+          elif [[ "$COMMIT_MESSAGE" =~ ^m ]]; then
+            minor=$((minor + 1)); patch=0
+          else
+            patch=$((patch + 1))
+          fi
+
+          new_version=$(printf "v%02d.%02d.%02d" $major $minor $patch)
+          echo "version=$new_version" >> "$GITHUB_OUTPUT"
+          echo "Latest: $latest_tag → Next: $new_version (commit: ${COMMIT_MESSAGE:0:60})"
 
       - name: Create Release
         if: steps.filter.outputs.src == 'true'
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: CLI-VERSION-${{ steps.version.outputs.num }}
-          name: "Greenman CLI Version ${{ steps.version.outputs.num }}"
+          tag_name: ${{ steps.version.outputs.version }}
+          name: "Greenman CLI ${{ steps.version.outputs.version }}"
           files: greenman_cli.zip
           draft: false
           prerelease: false
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
