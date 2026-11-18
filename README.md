@@ -82,7 +82,7 @@ this will only organize all python, text and json files in your current director
 
 ### usecase:
 
-`u` is the direct counterpart to `o`. it unwraps any directories in the linked directory to extract all files from further diretories back into it.
+`u` is the direct counterpart to `o`. it unwraps any directories in the linked directory to extract all files from further directories back into the target.
 
 ### arguments:
 
