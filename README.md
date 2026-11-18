@@ -8,8 +8,8 @@ Introducing Greenman, the ultimate directory organization tool!
 
 ### Greenman CLI
 
-Greenman's initial version was a CLI application that could be run anywhere by being implemented into the unix PATH. It is still up to date and just as good, if not faster due to it's lightweightness than any other versions.
-You can download it from the releases tab or the `greenman_for_cli` folder in the `main` branch. The initial version is only intended for unix based OSs and the PATH implementation has not been automated yet. that's coming soon!
+Greenman's initial version was a CLI application that could be run anywhere by being implemented into the unix PATH. It is still up to date and just as good, if not faster due to its lightweightness than any other versions.
+You can download it from the releases tab or the `greenman_for_cli` folder in the `main` branch.
 
 ### Greenman GUI 
 in development now. coming soon!
