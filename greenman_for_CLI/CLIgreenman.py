@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+VERSION = "DevModeVersion"
+
 from greenmancore import *
 import argparse
 
@@ -31,6 +33,9 @@ def knownlist():
     for i,u in buzzwords.items():
         print(f"{i} -> {u}")
 
+def ver():
+    print("greenman is at " + VERSION)
+
 
 parser = argparse.ArgumentParser(prog='greenman')
 subparsers = parser.add_subparsers(dest='command', required=True)
@@ -52,11 +57,16 @@ p.add_argument("-k","--known", action="store_true")
 p.add_argument("-D","--onlydir",type=str,default="all",help="only unwraps dirs mentioned in here")
 p.set_defaults(func=unwrap)
 
+p=subparsers.add_parser("version", aliases = ["v","ver"],help="displays current version")
+p.set_defaults(func = ver)
+
 p=subparsers.add_parser("knownlist", aliases = ["kl","klist"],help="list all entries to the known list. important for 'greenman u -k'.")
 p.set_defaults(func = knownlist)
+
 args = parser.parse_args()
 
-commands = {"organize": ["path","only"],"o": ["path","only"],"help": "item","unwrap":["path","only","deep","known","onlydir"],"u":["path","only","deep","known","onlydir"],"kl":None}
+commands = {"organize": ["path","only"],"o": ["path","only"],"help": "item","unwrap":["path","only","deep","known","onlydir"],"u":["path","only","deep","known","onlydir"],"kl":None,
+"V": None,"ver": None,"version":None}
 if args.command in commands.keys():
     commandContents = commands.get(args.command)
     params = False
