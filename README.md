@@ -70,10 +70,9 @@ greenman help list         # list of items you can get help with
 
 **Examples:**
 
-```
-greenman o -p ~/Downloads
-greenman o -p ~/Downloads -o .deb
-greenman o
+- `greenman o -p ~/Downloads` — organizes all files in the downloads directory
+- `greenman o -p ~/Downloads -o .deb` — only organizes debian packages in your downloads
+- `greenman o` — organizes all files in the current directory   
 ```
 
 ---
