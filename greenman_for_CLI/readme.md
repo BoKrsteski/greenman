@@ -41,7 +41,7 @@ First, install both python files from this directory
 
 then, get the `LINUX_greenman-PATHbinder.sh` file from the __OS_specific__ folder.
 
-Now, to set up Greenman CLI in your linux terminal, ensure that `LINUX_greenman-PATHbinder.sh`, as well as `CLIgreenman.py` have the `+x` permission. They should have it by default but you never know.
+Now, to set up Greenman CLI in your linux terminal, ensure that `LINUX_greenman-PATHbinder.sh` has the `+x` permission. They should have it by default but you never know.
 
 If they don't have the `+x` permission, run `chmod +x LINUX_greenman-PATHbinder.sh CLIgreenman.py`. Now they should have it.
 
