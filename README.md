@@ -49,10 +49,10 @@ The GUI version will also be available in the **releases** tab as an executable.
 **Examples:**
 
 ```
-greenman help              # receive general help
-greenman help o            # receive help with the `o` command
-greenman help list         # list of items you can get help with
-```
+greenman o -p ~/Downloads              # organizes all files in the downloads directory
+greenman o -p ~/Downloads -o .deb      # only organizes debian packages in your downloads
+greenman o                             # organizes all files in the current directory
+``` 
 
 ---
 
