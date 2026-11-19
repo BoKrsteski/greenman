@@ -1,152 +1,119 @@
-# Greenman
+<p align="center">
+  <img src="greenman_GUI/data/icons/greenman.png" width="120" alt="Greenman">
+</p>
 
-have you ever had a directory full of random, unorganized stuff? No more!
+<h1 align="center">Greenman</h1>
 
-Introducing Greenman, the ultimate directory organization tool!
+<p align="center">
+  Have you ever had a directory full of random, unorganized stuff? No more!<br><br>
+  <b>Introducing Greenman</b> — the ultimate directory organization tool.
+</p>
 
-## Versions:
+---
+
+## Versions
 
 ### Greenman CLI
 
 Greenman's initial version was a CLI application that could be run anywhere by being implemented into the unix PATH. It is still up to date and just as good, if not faster due to its lightweightness than any other versions.
-You can download it from the releases tab or the `greenman_for_cli` folder in the `main` branch.
 
-### Greenman GUI 
-in development now. coming soon!
+You can download it from the [releases tab](https://github.com/YOUR_USER/YOUR_REPO/releases) or the `greenman_for_cli` folder in the `main` branch.
 
-## How to install:
+### Greenman GUI
 
-you can directly download all files for the CLI version in the __releases__ tab. Or you can only get the files you need from the folder in the source code. The readme will contain further instructions.
+<img src="greenman_GUI/data/icons/greenman.png" width="48" align="right">
 
-The GUI version will also be available in the __releases__ tab as an executable.
+**In development now. Coming soon!**
 
-## Greenman CLI Commands:
+---
 
-NOTE: order of arguments does not matter!
+## How to install
 
-### `help`:
+You can directly download all files for the CLI version in the **releases** tab. Or you can only get the files you need from the folder in the source code. The readme will contain further instructions.
 
-### usecase:
-`help` is used to get help with certain commands or with greenman in general, though it is not yet very thorough. Additions will come soon. For now rely on the `README`
+The GUI version will also be available in the **releases** tab as an executable.
 
-### arguments:
+---
 
-#### `command`:
+## Greenman CLI Commands
 
-`help` only takes one argument, so just type `help` followed by the command you want help with to get help with that respective command. Type `help list` to see a list of commands or other items you can get help with.
+> **NOTE:** order of arguments does not matter!
 
-### examples:
+### `help`
 
-`greenman help` / `greenman help me` - receive general help for greenman 
-`greenman help o` / `greenman help organize` - receive help with the `o` command
-`greenman help list` - receive a list of items you can get help with
+**Use case:**
+`help` is used to get help with certain commands or with greenman in general, though it is not yet very thorough. Additions will come soon. For now rely on the `README`.
 
-### `organize` / `o`:
+**Arguments:**
 
-### usecase:
+`command` — `help` only takes one argument, so just type `help` followed by the command you want help with. Type `help list` to see a list of commands.
 
-`o` is one of the core function of Greenman. It organizes any linked directory by your preferred criteria.
+**Examples:**
 
-### arguments:
+```
+greenman help              # receive general help
+greenman help o            # receive help with the `o` command
+greenman help list         # list of items you can get help with
+```
 
-#### `-p` / `--path`:
+---
 
-the path to the directory you want organized. default is the current one.
+### `organize` / `o`
 
-example:
+**Use case:**
+`o` is one of the core functions of Greenman. It organizes any linked directory by your preferred criteria.
 
-`greenman o -p path/to/my/stuff`
+**Arguments:**
 
-this will organize the `stuff` directory.
+| Flag | Description |
+|------|-------------|
+| `-p` / `--path` | Path to the directory to organize. Default: current. |
+| `-o` / `--only` | Filter by extensions. Default: all. |
 
-#### `-o` / `--only`:
+**Examples:**
 
-this filters for extensions that you want organized. Default is all. Only want python files organized? Use `-o .py`
+```
+greenman o -p ~/Downloads
+greenman o -p ~/Downloads -o .deb
+greenman o
+```
 
-example:
+---
 
-`greenman o -o .py,.txt,.json`
+### `unwrap` / `u`
 
-this will only organize all python, text and json files in your current directory
+**Use case:**
+`u` is the direct counterpart to `o`. It unwraps any directories in the linked directory to extract all files back into the target.
 
-### examples:
+**Arguments:**
 
- `greenman o -p ~/home/user/Downloads` - organizes all files in the downloads directory
+| Flag | Description |
+|------|-------------|
+| `-p` / `--path` | Path to the directory to unwrap. Default: current. |
+| `-o` / `--only` | Filter by extensions. Default: all. |
+| `-d` / `--deep` | Recursively unwrap nested directories. |
+| `-k` / `--known` | Only unwrap directories Greenman recognizes. |
+| `-D` / `--onlydir` | Filter for specific directory names. |
 
- `greenman o -p ~/home/user/Downloads -o .deb` - only organizes debian packages in your downloads
+**Examples:**
 
- `greenman o` - organizes all files in the current directory
+```
+greenman u -d            # unwrap all nested contents into current dir
+greenman u -k            # only unwrap Greenman-named directories
+greenman u -D coolstuff  # only unwrap "coolstuff"
+```
 
+---
 
-### `unwrap` / `u`:
+### `knownlist` / `klist` / `kl`
 
-### usecase:
+**Use case:**
+`kl` displays all extensions and dirnames known to greenman. Useful if you want to see what `greenman u -k` includes.
 
-`u` is the direct counterpart to `o`. it unwraps any directories in the linked directory to extract all files from further directories back into the target.
+**Arguments:** None lol
 
-### arguments:
+**Example:**
 
-#### `-p` / `--path`:
-
-the path to the directory you want unwrapped. default is the current one.
-
-example:
-
-`greenman u -p path/to/my/stuff`
-
-this will unwrap the `stuff` directory.
-
-#### `-o` / `--only`:
-
-this filters for extensions that you want unwrapped. Default is all. Only want python files unwrapped? Use `-o .py`
-
-example:
-
-`greenman u -o .py,.txt,.json`
-
-this will only unwrap all python, text and json files in your current directory
-
-#### `-d` / `--deep`:
-
-use `-d` to also unwrap any directories following the first ones in your target directory. If you want the contents of `/one/two/three` back in `/one`, use `-d`. Otherwhise only the contents from `/one/two` will be moved to `/one` and the contents of `one/two/three` will remain there. -d works infinitely.
-
-example:
-
-`greenman u -d`
-
-this will unwrap all contents off all following directories into this one. 
-
-#### `-k` / `--known`:
-
-`-k` will only unwrap known directories, meaning directories that have matching greenman names. So if you want to only revert organization changes made by greenman, use `-k`.
-
-example:
-
-`greenman u -k`
-
-let's say you have 3 directories in your target: `text_files`,`crazyStuff3000` and `debian_packages`. `-k` will make it so that greenman will only unpack directories which it recognizes. Essentially greenman asks itself: "would I name a directory this way?". If so, it gets unwrapped. Otherwise it will be ignored. So in this situation, only `text_files` and `debian_packages` will be unwrapped.
-
-#### `-D` / `—-onlydir`:
-`-D` is used to filter for certain directory names to be unwrapped. Deep version coming soon.
-
-example:
-
-if you have a dir called `coolstuff` in the current directory, you can filter for it using:
-
-`greenman u -D coolstuff`
-
-this will only unwrap the `coolstuff` directory.
-
-### `knownlist` / `klist` / `kl`:
-
-### usecase:
-
-`kl` displays all extensions and dirnames known to greenman. useful if you want to see what `greenman u -k` includes. (executables for linux are not shown because greenman checks for permission rights, not extensions.)
-
-### arguments:
-
-None lol
-
-### example:
-
-`greenman kl`   -   displays all known extensions and director names
+```
+greenman kl
+```   
