@@ -21,7 +21,7 @@ def GmanHelp(command):
         print("list of help items:\n-------------------")
         for i in helpDict.keys():
             print(i)
-        print("-------------------\nuse - 'greenman help (item)' - to open it's help entry")
+        print("-------------------\nuse - 'greenman help (item)' - to open its help entry")
     elif command in helpAliases.keys():
         print(helpDict.get(helpAliases.get(command)))
     else:
