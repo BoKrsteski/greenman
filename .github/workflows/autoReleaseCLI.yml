@@ -13,7 +13,7 @@ jobs:
     env:
       TARGET_DIR: 'greenman_for_CLI'
 
-      steps:
+    steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
@@ -35,7 +35,30 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
         run: |
-          # ... (your existing version logic, unchanged)
+          response=$(curl -s -H "Authorization: token $GITHUB_TOKEN" \
+            "https://api.github.com/repos/${{ github.repository }}/releases?per_page=100")
+
+          latest_tag=$(echo "$response" | jq -r \
+            '[.[] | select(.tag_name | test("^v[0-9]+\\.[0-9]+\\.[0-9]+$"))] | sort_by(.published_at) | last | .tag_name // ""')
+
+          if [[ -n "$latest_tag" ]]; then
+            version_str="${latest_tag#v}"
+            IFS='.' read -r major minor patch <<< "$version_str"
+          else
+            major=0; minor=0; patch=0
+          fi
+
+          if [[ "$COMMIT_MESSAGE" =~ ^M ]]; then
+            major=$((major + 1))
+          elif [[ "$COMMIT_MESSAGE" =~ ^m ]]; then
+            minor=$((minor + 1))
+          else
+            patch=$((patch + 1))
+          fi
+
+          new_version=$(printf "v%02d.%02d.%02d" $major $minor $patch)
+          echo "version=$new_version" >> "$GITHUB_OUTPUT"
+          echo "Latest: $latest_tag → Next: $new_version (commit: ${COMMIT_MESSAGE:0:60})"
 
       - name: Update version in source
         if: steps.filter.outputs.src == 'true'
