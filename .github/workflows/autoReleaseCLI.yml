@@ -58,12 +58,12 @@ jobs:
 
 
           if [[ "$COMMIT_MESSAGE" =~ ^M ]]; then
-            major=$((major + 1)); minor=0; patch=0
+            major=$((major + 1))
           elif [[ "$COMMIT_MESSAGE" =~ ^m ]]; then
-            minor=$((minor + 1)); patch=0
+            minor=$((minor + 1))
           else
             patch=$((patch + 1))
-          fi
+          fi   
 
           new_version=$(printf "v%02d.%02d.%02d" $major $minor $patch)
           echo "version=$new_version" >> "$GITHUB_OUTPUT"
