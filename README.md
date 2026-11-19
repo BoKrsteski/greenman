@@ -13,7 +13,7 @@
 
 ## Versions
 
-### Greenman CLI
+<h3>Greenman CLI <img src="greenman_GUI/data/icons/CLIgreenman.png" width="48" align="absmiddle" alt="CLI"></h3>   
 
 Greenman's initial version was a CLI application that could be run anywhere by being implemented into the unix PATH. It is still up to date and just as good, if not faster due to its lightweightness than any other versions.
 
@@ -21,9 +21,7 @@ You can download it from the [releases tab](https://github.com/YOUR_USER/YOUR_RE
 
 ### Greenman GUI
 
-<img src="greenman_GUI/data/icons/greenman.png" width="48" align="right">
-
-**In development now. Coming soon!**
+**In development now. Coming soon!**   
 
 ---
 
