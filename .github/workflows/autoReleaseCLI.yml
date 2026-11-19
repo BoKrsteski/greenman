@@ -48,10 +48,10 @@ jobs:
             major=0; minor=0; patch=0
           fi
 
-          if [[ "$COMMIT_MESSAGE" =~ ^M ]]; then
+          if [[ "$COMMIT_MESSAGE" =~ ^M\  ]]; then
             major=$((major + 1))
-          elif [[ "$COMMIT_MESSAGE" =~ ^m ]]; then
-            minor=$((minor + 1))
+          elif [[ "$COMMIT_MESSAGE" =~ ^m\  ]]; then
+            minor=$((minor + 1))   
           else
             patch=$((patch + 1))
           fi
