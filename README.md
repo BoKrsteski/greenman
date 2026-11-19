@@ -33,7 +33,7 @@ The GUI version will also be available in the **releases** tab as an executable.
 
 ---
 
-## Greenman CLI Commands
+##  <img src="greenman_GUI/data/icons/CLIgreenman.png" width="48" align="absmiddle" alt="CLI"> Greenman CLI Commands
 
 > **NOTE:** order of arguments does not matter!
 
