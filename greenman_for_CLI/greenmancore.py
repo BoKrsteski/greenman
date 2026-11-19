@@ -97,12 +97,15 @@ def unwrap(path,only,deep,known,onlydir):
         firstOnlydir=onlydir.replace("/","").split(",")
         onlydir =onlydir.split(",")
         dirs = [f for f in os.listdir(path) if os.path.isdir(os.path.join(path, f))] if onlydir[0] == "all" and len(onlydir) == 1 else [f for f in os.listdir(path) if os.path.isdir(os.path.join(path, f)) and f in firstOnlydir]
-        if not set(dirs) == set(onlydir) and len(onlydir) > len(dirs):
+        if onlydir[0] != "all" and not set(dirs) == set(onlydir) and len(onlydir) > len(dirs):
             diff = [x for x in onlydir if x not in dirs]
             print(f"WARNING: unresolved dirnames: '{",".join(diff)}' not found!\nContinuing with existing ones...")
         s = "s" if len(onlydir) > 1 else ""
         if len(dirs) == 0:
-            print(f"FATAL: No dirs by the name{s} '{",".join(onlydir)}' were found.")
+            if onlydir[0] == "all":
+                print("FATAL: No directories found to unwrap.")
+            else:
+                print(f"FATAL: No dirs by the name{s} '{",".join(onlydir)}' were found.")
             do_not_execute = True
         ventBuzzWords = {}
         vent = False
@@ -147,6 +150,7 @@ def unwrap(path,only,deep,known,onlydir):
                     if do:
                         if deep:
                             unwrapunit(i,absopath)
+                            #unwrapunit(i,absopath)
                         else:    
                             for x in [f for f in os.listdir(os.path.join(absopath,i)) if os.path.isfile(os.path.join(absopath,i, f))]:
                                 aix = os.path.join(absopath,i,x)
