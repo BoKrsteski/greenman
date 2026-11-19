@@ -10,7 +10,7 @@ import time
 
 buzzwords = {".iso":"ISO_images",".py": "python_scripts", ".png": "images", ".jpg": "images",".webp": "images", ".gif": "gifs", ".ico":"icons", ".exe": "executables",".deb": "debian_packages",".zip": "ZIPs",".txt": "text_files",".tar.gz":"tarball_archives",".mov":"videos",".mp4":"videos",".mp3":"audio",".wav":"audio"}
 
-def organize(path,only):
+def organize(path,only,OneDir):
     if not os.path.isdir(path):
         print("target isn't a directory!")
     else:
@@ -18,6 +18,9 @@ def organize(path,only):
         ventBuzzWords = {}
         vent = False
         do_not_execute = False
+        if len(files) == 0:
+            print("FATAL: No files in target directory!")
+            do_not_execute = True
         if not only =="all":
             only = only.replace(" ","").split(",")
             for i in only:
@@ -47,16 +50,30 @@ def organize(path,only):
                 print(f"({curCyc}/{fileamt}) [{prprint*"=" + Oprint*"O"+remainder * "-"}]", end="\r")
                 time.sleep(0.5/fileamt)
                 finder = ventBuzzWords if vent else buzzwords
+                onedirisFalse = False if OneDir != "off" else True
                 for u in finder.keys():
                     if i.endswith(u):
-                        selDir= finder.get(u)
-                        os.makedirs(os.path.join(path,selDir), exist_ok=True)
-                        os.rename(os.path.join(path,i), os.path.join(path,selDir,i))
-                        break
+                        if onedirisFalse:
+                            selDir= finder.get(u)
+                            os.makedirs(os.path.join(path,selDir), exist_ok=True)
+                            os.rename(os.path.join(path,i), os.path.join(path,selDir,i))
+                            break
+                        else:
+                            os.makedirs(os.path.join(path,OneDir), exist_ok=True)
+                            os.rename(os.path.join(path,i), os.path.join(path,OneDir,i))
+                            break
                 else:
-                    if os.access(os.path.join(path,i), os.X_OK):
-                        os.makedirs(os.path.join(path,"executables"),exist_ok = True)
-                        os.rename(os.path.join(path,i),os.path.join(path,"executables",i))
+                    if not onedirisFalse:
+                        os.makedirs(os.path.join(path,OneDir), exist_ok=True)
+                        os.rename(os.path.join(path,i), os.path.join(path,OneDir,i))
+                    elif os.access(os.path.join(path,i), os.X_OK):
+                        carryOn = True
+                        for a in buzzwords.keys():
+                            if i.endswith(a):
+                                carryOn = False
+                        if carryOn:
+                            os.makedirs(os.path.join(path,"executables"),exist_ok = True)
+                            os.rename(os.path.join(path,i),os.path.join(path,"executables",i))
             print()
 
             print("done!")
