@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
-sudo ln -sf "$(dirname "$0")/greenman" /usr/local/bin/greenman
+ln -sf "$(dirname "$0")/CLIgreenman.py" /usr/local/bin/greenman
+chmod +x CLIgreenman.py
+echo done! Greenman is all set up!
+greenman help help
