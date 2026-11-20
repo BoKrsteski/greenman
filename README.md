@@ -17,7 +17,7 @@
 
 Greenman's initial version was a CLI application that could be run anywhere by being implemented into the unix PATH. It is still up to date and just as good, if not faster due to its lightweightness than any other versions.
 
-You can download it from the [releases tab](https://github.com/YOUR_USER/YOUR_REPO/releases) or the `greenman_for_cli` folder in the `main` branch.
+You can download it from the [releases tab](https://github.com/BoKrsteski/greenman/releases) or the `greenman_for_cli` folder in the `main` branch.
 
 <h3>Greenman GUI <img src="greenman_GUI/data/icons/GUIgreenman.png" width="48" align="absmiddle" alt="GUI"></h3>
 
