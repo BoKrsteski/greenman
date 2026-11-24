@@ -44,6 +44,9 @@ jobs:
           if [[ -n "$latest_tag" ]]; then
             version_str="${latest_tag#v}"
             IFS='.' read -r major minor patch <<< "$version_str"
+            major=$((10#$major))
+            minor=$((10#$minor))
+            patch=$((10#$patch))
           else
             major=0; minor=0; patch=0
           fi
@@ -51,7 +54,7 @@ jobs:
           if [[ "$COMMIT_MESSAGE" =~ ^M\  ]]; then
             major=$((major + 1))
           elif [[ "$COMMIT_MESSAGE" =~ ^m\  ]]; then
-            minor=$((minor + 1))   
+            minor=$((minor + 1))
           else
             patch=$((patch + 1))
           fi
