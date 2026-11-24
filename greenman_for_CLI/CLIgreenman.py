@@ -33,11 +33,36 @@ def knownlist():
     for i,u in buzzwords.items():
         print(f"{i} -> {u}")
 
+def smile():
+    print("\033[32m"+r"""
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣶⠾⠛⠛⠋⠉⠛⠛⠷⢶⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⣠⣾⠟⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣷⣄⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣴⠟⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⣧⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣸⡏⠀⠀⠀⠀⣴⣶⡆⠀⠀⠀⠀⢠⣶⣦⠀⠀⠀⠀⢹⣇⠀⠀⠀⠀
+⠀⠀⠀⢠⣿⠀⠀⠀⠀⠀⠛⠟⠃⠀⠀⠀⠀⠘⠻⠛⠀⠀⠀⠀⠀⣿⡄⠀⠀⠀
+⠀⠀⠀⢸⣿⠀⠀⠀⠀⢠⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡄⠀⠀⠀⠀⢸⡇⠀⠀⠀
+⠀⠀⠀⠘⣿⠀⠀⠀⠀⠸⣧⠀⠀⠀⠀⠀⠀⠀⠀⣼⡏⠀⠀⠀⠀⣿⠇⠀⠀⠀
+⠀⠀⠀⠀⢻⣇⠀⠀⠀⠀⠙⢷⣦⣀⡀⠀⣀⣠⡾⠋⠀⠀⠀⠀⢰⡟⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⢻⣦⠀⠀⠀⠀⠀⠈⠉⠙⠋⠉⠉⠀⠀⠀⠀⠀⣰⡟⠁⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠙⢷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⠏⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠙⠻⢶⣤⣄⣀⣀⣀⣀⣠⣤⡶⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠉⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀
+"""+"\033[0m")
+
 def ver(Isinit):
     if Isinit:
         print("Installing greenman...")
+        print("\033[32m"+r"""
+ ██████╗ ██████╗ ███████╗███████╗███╗   ██╗███╗   ███╗ █████╗ ███╗   ██╗
+██╔════╝ ██╔══██╗██╔════╝██╔════╝████╗  ██║████╗ ████║██╔══██╗████╗  ██║
+██║  ███╗██████╔╝█████╗  █████╗  ██╔██╗ ██║██╔████╔██║███████║██╔██╗ ██║
+██║   ██║██╔══██╗██╔══╝  ██╔══╝  ██║╚██╗██║██║╚██╔╝██║██╔══██║██║╚██╗██║
+╚██████╔╝██║  ██║███████╗███████╗██║ ╚████║██║ ╚═╝ ██║██║  ██║██║ ╚████║
+ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝
+        """+"\033[0m")
         print("Greenman successfully installed!")
-    print("greenman is at " + VERSION)
+    print("Greenman is at " + VERSION)
 
 
 parser = argparse.ArgumentParser(prog='greenman')
@@ -70,10 +95,13 @@ p.set_defaults(func = ver)
 p=subparsers.add_parser("knownlist", aliases = ["kl","klist"],help="list all entries to the known list. important for 'greenman u -k'.")
 p.set_defaults(func = knownlist)
 
+p=subparsers.add_parser("smile",help="let greenman smile at you :)")
+p.set_defaults(func = smile)
+
 args = parser.parse_args()
 
 commands = {"organize": ["path","only","onedir","keyword","name"],"o": ["path","only","onedir","keyword","name"],"help": "item","unwrap":["path","only","deep","known","onlydir"],"u":["path","only","deep","known","onlydir"],"kl":None,
-"v": "init","ver": "init","version":"init"}
+"v": "init","ver": "init","version":"init","smile":None}
 if args.command in commands.keys():
     commandContents = commands.get(args.command)
     params = False
