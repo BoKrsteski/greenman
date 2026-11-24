@@ -45,8 +45,10 @@ subparsers = parser.add_subparsers(dest='command', required=True)
 
 p = subparsers.add_parser('organize', aliases=['o'], help='Organize a directory')
 p.add_argument("-p", "--path", type=str, default=".",help="the path to the dir you want organized. Default is your current dir")
-p.add_argument("-o", "--only",type=str,default="all",help="'only' is used if you want to only organize certain files.")
+p.add_argument("-o", "--only",type=str,default="all",help="'only' is used if you want to only organize certain files by filetype/extension.")
 p.add_argument("--onedir", type=str,default="off",help="puts all files in only one directory. Set the directory's name right after the argument.")
+p.add_argument("-k", "--keyword",type=str,default="nil",help="'keyword' is used if you want to only organize certain files by name. This searches if the name INCLUDES the given string.")
+p.add_argument("-n", "--name",type=str,default="nil",help="'name' is used if you want to only organize certain files by name. This searches if the name IS the given string. If it's any different, It'll be ignored.")
 p.set_defaults(func=organize)
 
 p=subparsers.add_parser("help", help="better way of receiving help. follow up by command you need help with")
@@ -70,7 +72,7 @@ p.set_defaults(func = knownlist)
 
 args = parser.parse_args()
 
-commands = {"organize": ["path","only","onedir"],"o": ["path","only","onedir"],"help": "item","unwrap":["path","only","deep","known","onlydir"],"u":["path","only","deep","known","onlydir"],"kl":None,
+commands = {"organize": ["path","only","onedir","keyword","name"],"o": ["path","only","onedir","keyword","name"],"help": "item","unwrap":["path","only","deep","known","onlydir"],"u":["path","only","deep","known","onlydir"],"kl":None,
 "v": "init","ver": "init","version":"init"}
 if args.command in commands.keys():
     commandContents = commands.get(args.command)
