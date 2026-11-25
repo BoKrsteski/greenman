@@ -70,8 +70,8 @@ greenman o                             # organizes all files in the current dire
 
 **Examples:**
 ```
-greenman o -p ~/Downloads` — organizes all files in the downloads directory
-greenman o -p ~/Downloads -o .deb` — only organizes debian packages in your downloads
+greenman o -p ~/Downloads — organizes all files in the downloads directory
+greenman o -p ~/Downloads -o .deb — only organizes debian packages in your downloads
 greenman o` — organizes all files in the current directory   
 ```
 
