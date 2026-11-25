@@ -27,7 +27,7 @@ You can download it from the [releases tab](https://github.com/BoKrsteski/greenm
 
 ## How to install
 
-You can directly download all files for the CLI version in the **releases** tab. Or you can only get the files you need from the folder in the source code. The readme will contain further instructions.
+You can directly download all files for the CLI version in the [releases tab](https://github.com/BoKrsteski/greenman/releases). Or you can only get the files you need from the folder in the source code. The readme will contain further instructions.
 
 The GUI version will also be available in the **releases** tab as an executable.
 
