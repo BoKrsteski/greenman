@@ -177,7 +177,7 @@ def unwrap(path,only,deep,known,onlydir):
                 remainder = 30 - progress
                 prprint=progress-1 if progress != 30 else progress
                 Oprint = 1 if prprint != 30 else 0
-                print(f"({BLUE}{curCyc}{RESET}/{BLUE}{fileamt}{RESET}) [{GREEN}{prprint*'='}{Oprint*'O'}{GRAY}{remainder*'-'}{RESET}]", end="\r")
+                print(f"({BLUE}{curCyc}{RESET}/{BLUE}{diramt}{RESET}) [{GREEN}{prprint*'='}{Oprint*'O'}{GRAY}{remainder*'-'}{RESET}]", end="\r")
                 time.sleep(0.3 /diramt)
                 finder = ventBuzzWords if vent else buzzwords
                 for u in finder.keys():
@@ -220,4 +220,4 @@ def unwrap(path,only,deep,known,onlydir):
 
             print(GREEN+"done!"+RESET)
 
-#test
+#test                            #unwrapunit(i,absopath)
