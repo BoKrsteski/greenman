@@ -66,7 +66,7 @@ def ver(Isinit):
 ╚██████╔╝██║  ██║███████╗███████╗██║ ╚████║██║ ╚═╝ ██║██║  ██║██║ ╚████║
  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝
         """+RESET)
-        print(+"Greenman successfully installed!")
+        print("Greenman successfully installed!")
     print(BLUE+"Greenman is at " + VERSION +RESET)
 
 
