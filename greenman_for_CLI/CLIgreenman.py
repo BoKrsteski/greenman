@@ -22,13 +22,13 @@ def GmanHelp(command):
     if command in helpDict.keys():
         print(helpDict.get(command))
     elif command == "list":
-        print(GREEN+"list of help items:\n-------------------"+RESET)
-        blu = True
+        print("list of help items:\n"+BLUE+"-------------------"+RESET)
+        blu = False
         for i in helpDict.keys():
-            toPrint = BLUE if blu else ""
+            toPrint = SUBTLEGRAY if blu else ""
             print(toPrint+i+RESET)
             blu = not blu
-        print(GREEN+"-------------------\nuse - "+BLUE+"'greenman help (item)'"+RESET+" - to open its help entry")
+        print(BLUE+"-------------------\n"+RESET+"use - '"+BLUE+"greenman help (item)"+RESET+"' - to open its help entry")
     elif command in helpAliases.keys():
         print(helpDict.get(helpAliases.get(command)))
     else:
@@ -66,7 +66,7 @@ def ver(Isinit):
 ╚██████╔╝██║  ██║███████╗███████╗██║ ╚████║██║ ╚═╝ ██║██║  ██║██║ ╚████║
  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝
         """+RESET)
-        print("Greenman successfully installed!")
+        print(GREEN+"Greenman successfully installed!"+RESET)
     print(BLUE+"Greenman is at " + VERSION +RESET)
 
 

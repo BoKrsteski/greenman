@@ -13,6 +13,7 @@ RED="\033[31m"
 YELLOW= "\033[93m"
 BLUE="\033[94m"
 GRAY = "\033[38;5;244m"
+SUBTLEGRAY = "\033[38;5;251m"
 
 buzzwords = {".iso":"ISO_images",".py": "python_scripts", ".png": "images", ".jpg": "images",".webp": "images", ".gif": "gifs", ".ico":"icons", ".exe": "executables",".deb": "debian_packages",".zip": "ZIPs",".txt": "text_files",".tar.gz":"tarball_archives",".mov":"videos",".mp4":"videos",".mp3":"audio",".wav":"audio",".md": "markdown_files"}
 
@@ -220,4 +221,4 @@ def unwrap(path,only,deep,known,onlydir):
 
             print(GREEN+"done!"+RESET)
 
-#test                            #unwrapunit(i,absopath)
+#test
