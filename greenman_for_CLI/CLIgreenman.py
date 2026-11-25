@@ -8,6 +8,7 @@ import argparse
 # GREENMAN!
 
 #TODO help documentation!!!!
+#TODO colorize outputs!
 
 helpDict = {"me":"Here's some general tips & tricks for using greenman.\n\nNOTE: to see further help entries, type 'greenman help list'\n\nthe base components to use greenman are the ORGANIZE and UNWRAP functions.\nto receive further information on each, type 'greenman help organize' or 'greenman help unwrap'\n\nThe order of arguments does not matter!\n'greenman u -d -p /here' will have the same effect as 'greenman u -p /here -d'.\n\nLove, greenman!","help": "getting help for the help command is crazy...\n\nAnyway, use 'greenman help' followed by a command to receive help for it\nDo 'greenman help list' to list all comands you can get help with.",
 "organize": "this command organizes files within the directory that you link afterwards \n\nALIASES:\norganize / o \n\nARGS: \n-p / --path :\nthe path to the dir you want organized. Defaults to current dir.\n\n-o / --only :\nused to filter for filetypes that you want organized. make sure to seperate with commas. \n\n--onedir :\nused to move all files in a directory into a singular further directory. Naming it is imperative.\nExample: greenman o --onedir everything   - Here, the name would be 'everything'\n\nEXAMPLES:\ngreenman o   - organizes everything in current dir\ngreenman o .txt,.py   - only organizes python and text files in current dir \ngreenman o -p /home/user/Downloads   - organizes the downloads folder.",
