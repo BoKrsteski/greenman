@@ -29,7 +29,7 @@ Now, to set up Greenman CLI in your windows terminal, ensure that `WINDOWS_green
 
 Make sure all files are in the same directory (preferably even in their very own one). then execute `WINDOWS_greenman-PATHbinder.bat`
 
-After you've done that, check if greenman works by typing any greenman command (e.g. `greenman help help`) in your CLI. This should now work in any directory.
+After you've done that, check if greenman works by typing any greenman command (e.g. `greenman v --init`) in your CLI. This should now work in any directory.
 
 That's the PATH magic for ya :)
 
@@ -51,6 +51,6 @@ Make sure all files are in the same directory (preferably even in their very own
 
 Usually this doesn't require superuser rights.
 
-After you've done that, check if greenman works by typing any greenman command (e.g. `greenman help help`) in your CLI. This should now work in any directory. 
+After you've done that, check if greenman works by typing any greenman command (e.g. `greenman v --init`) in your CLI. This should now work in any directory. 
 
 That's the PATH magic for ya :)
