@@ -10,8 +10,9 @@ import argparse
 #TODO help documentation!!!!
 #TODO colorize outputs!
 
+
 helpDict = {"me":"Here's some general tips & tricks for using greenman.\n\nNOTE: to see further help entries, type 'greenman help list'\n\nthe base components to use greenman are the ORGANIZE and UNWRAP functions.\nto receive further information on each, type 'greenman help organize' or 'greenman help unwrap'\n\nThe order of arguments does not matter!\n'greenman u -d -p /here' will have the same effect as 'greenman u -p /here -d'.\n\nLove, greenman!","help": "getting help for the help command is crazy...\n\nAnyway, use 'greenman help' followed by a command to receive help for it\nDo 'greenman help list' to list all comands you can get help with.",
-"organize": "this command organizes files within the directory that you link afterwards \n\nALIASES:\norganize / o \n\nARGS: \n-p / --path :\nthe path to the dir you want organized. Defaults to current dir.\n\n-o / --only :\nused to filter for filetypes that you want organized. make sure to seperate with commas. \n\n--onedir :\nused to move all files in a directory into a singular further directory. Naming it is imperative.\nExample: greenman o --onedir everything   - Here, the name would be 'everything'\n\nEXAMPLES:\ngreenman o   - organizes everything in current dir\ngreenman o .txt,.py   - only organizes python and text files in current dir \ngreenman o -p /home/user/Downloads   - organizes the downloads folder.",
+"organize": "this command organizes files within the directory that you link afterwards \n\nALIASES:\norganize / o \n\nARGS: \n-p / --path :\nthe path to the dir you want organized. Defaults to current dir.\n\n-o / --only :\nused to filter for filetypes that you want organized. make sure to seperate with commas. \n\n--onedir :\nused to move all files in a directory into a singular further directory. Naming it is imperative.\nExample: greenman o --onedir everything   - Here, the name would be 'everything'\n\n-k / --keyword :\nfilters for files containing the provided string in their name.\n\n-k / --name :\nfilters for files with the same name as the provided string.\n\nEXAMPLES:\ngreenman o   - organizes everything in current dir\ngreenman o .txt,.py   - only organizes python and text files in current dir \ngreenman o -p /home/user/Downloads   - organizes the downloads folder.",
 "unwrap": "this command unwraps files from all Directories inside the target, meaning that it will return all files from further Directories back into the target. \n\nALIASES:\nunwrap / u\n\nargs:\n-p / --path :\nthe path to the dir you want unwrapped. Defaults to current dir.\n\n-o / --only :\nused to filter for filetypes that you want unwrapped. make sure to seperate with commas.\n\n-d / --deep :\nUsed to unwrap all directories within your target recursively. if you set your target to '/target', greenman won't naturally search further than 2 layers, so '/target/stuff/morestuff' would get ignored. -d avoids this by searching everything recursively.\n\n-k / --known :\nThis command is used to filter the unwrapping process so it only includes directories that greenman created itself, So to say directly reverting the organize function without unwrpaping anything else.\nNOTE: It is recommended to use the knownlist to see if any of your unwanted firectories will be affected. Display it using 'greenman kl'.\n\n-d / --onlyDir :\nOnly unwraps directories that are named after this argument.\nExample: 'greenman u -D stuff,morestuff'. This would only unwrap the 'stuff' and 'morestuff' directories.\nMake sure to seperate with commas.\n\nEXAMPLES:\ngreenman u   - unwraps current directory.\ngreenman u -p /path/to/stuff   - unwraps the '/path/to/stuff' directory\ngreenman u -d   - will recursively unwrap all directories in current dir.\ngreenman u -k   - will only unwrap known directories in current directory.\ngreenman u -D stuff,otherstuff,morestuff   - will only unwrap the 'stuff', 'otherstuff' and 'morestuff' Directories in current Directory."}
 
 #unit: "item": "(infotext)\n\nALIASES:\n(aliases)\n\nARGS:\n(args)\n\nEXAMPLES:\n(example)   - (explanation)"
@@ -21,18 +22,21 @@ def GmanHelp(command):
     if command in helpDict.keys():
         print(helpDict.get(command))
     elif command == "list":
-        print("list of help items:\n-------------------")
+        print(GREEN+"list of help items:\n-------------------"+RESET)
+        blu = True
         for i in helpDict.keys():
-            print(i)
-        print("-------------------\nuse - 'greenman help (item)' - to open its help entry")
+            toPrint = BLUE if blu else ""
+            print(toPrint+i+RESET)
+            blu = not blu
+        print(GREEN+"-------------------\nuse - "+BLUE+"'greenman help (item)'"+RESET+" - to open its help entry")
     elif command in helpAliases.keys():
         print(helpDict.get(helpAliases.get(command)))
     else:
-        print("unknown command")
+        print(YELLOW+"unknown command"+RESET)
 
 def knownlist():
     for i,u in buzzwords.items():
-        print(f"{i} -> {u}")
+        print(f"{i} "+GREEN+"->"+BLUE+" {u}")
 
 def smile():
     print("\033[32m"+r"""
@@ -53,17 +57,17 @@ def smile():
 
 def ver(Isinit):
     if Isinit:
-        print("Installing greenman...")
-        print("\033[32m"+r"""
+        print(BLUE+"Installing greenman...")
+        print(GREEN+r"""
  ██████╗ ██████╗ ███████╗███████╗███╗   ██╗███╗   ███╗ █████╗ ███╗   ██╗
 ██╔════╝ ██╔══██╗██╔════╝██╔════╝████╗  ██║████╗ ████║██╔══██╗████╗  ██║
 ██║  ███╗██████╔╝█████╗  █████╗  ██╔██╗ ██║██╔████╔██║███████║██╔██╗ ██║
 ██║   ██║██╔══██╗██╔══╝  ██╔══╝  ██║╚██╗██║██║╚██╔╝██║██╔══██║██║╚██╗██║
 ╚██████╔╝██║  ██║███████╗███████╗██║ ╚████║██║ ╚═╝ ██║██║  ██║██║ ╚████║
  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚══════╝╚═╝  ╚═══╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝
-        """+"\033[0m")
-        print("Greenman successfully installed!")
-    print("Greenman is at " + VERSION)
+        """+RESET)
+        print(+"Greenman successfully installed!")
+    print(BLUE+"Greenman is at " + VERSION +RESET)
 
 
 parser = argparse.ArgumentParser(prog='greenman')

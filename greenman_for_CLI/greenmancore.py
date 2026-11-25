@@ -7,19 +7,25 @@ import time
 from pathlib import Path
 # GREENMAN!
 
+GREEN = "\033[32m"
+RESET = "\033[0m"
+RED="\033[31m"
+YELLOW= "\033[93m"
+BLUE="\033[94m"
+GRAY = "\033[38;5;244m"
 
 buzzwords = {".iso":"ISO_images",".py": "python_scripts", ".png": "images", ".jpg": "images",".webp": "images", ".gif": "gifs", ".ico":"icons", ".exe": "executables",".deb": "debian_packages",".zip": "ZIPs",".txt": "text_files",".tar.gz":"tarball_archives",".mov":"videos",".mp4":"videos",".mp3":"audio",".wav":"audio",".md": "markdown_files"}
 
 def organize(path,only,OneDir,keyword,strictName):
     if not os.path.isdir(path):
-        print("target isn't a directory!")
+        print(RED+"FATAL:"+RESET+" target isn't a directory!")
     else:
         files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
         ventBuzzWords = {}
         vent = False
         do_not_execute = False
         if len(files) == 0:
-            print("FATAL: No files in target directory!")
+            print(RED+"FATAL:"+RESET+" No files in target directory!")
             do_not_execute = True
         if not only =="all":
             only = only.replace(" ","").split(",")
@@ -29,14 +35,14 @@ def organize(path,only,OneDir,keyword,strictName):
                         ventBuzzWords[u] = buzzwords.get(u)
                     vent = True
             if vent == False:
-                print(f"couldn't find only-item '{only}'")
+                print(YELLOW+"WARNING:"+RESET+" couldn't find only-item "+BLUE+f"'{only}'"+RESET)
                 do_not_execute = True
         if not do_not_execute:
             loc = "current dir" if path =="." else path
             if vent:
-                print("only organizing " + " , ".join(ventBuzzWords.keys()) + f" files {f"including '{keyword}' " if keyword != "nil" else ""}{f"named '{strictName}' " if strictName != "nil" else ""}in " + loc + "...")
+                print("only organizing " + BLUE+ " , ".join(ventBuzzWords.keys()) + RESET+f" files {"including "+BLUE+f"'{keyword}' "+RESET if keyword != "nil" else ""}{f"named "+BLUE+f"'{strictName}' "+RESET if strictName != "nil" else ""}in " +BLUE+ loc + RESET+"...")
             else:
-                print(f"organizing files {f"including '{keyword}' " if keyword != "nil" else ""}{f"named '{strictName}' " if strictName != "nil" else ""}in {loc}...")
+                print(f"organizing files {f"including "+BLUE+f"'{keyword}' "+RESET if keyword != "nil" else ""}{"named "+BLUE+f"'{strictName}' "+RESET if strictName != "nil" else ""}in "+BLUE+f"{loc}"+RESET+"...")
             curCyc = 0
             for i in files:
                 curCyc += 1
@@ -45,7 +51,7 @@ def organize(path,only,OneDir,keyword,strictName):
                 remainder = 30 - progress
                 prprint=progress-1 if progress != 30 else progress
                 Oprint = 1 if prprint != 30 else 0
-                print(f"({curCyc}/{fileamt}) [{prprint*"=" + Oprint*"O"+remainder * "-"}]", end="\r")
+                print(f"({BLUE}{curCyc}{RESET}/{BLUE}{fileamt}{RESET}) [{GREEN}{prprint*'='}{Oprint*'O'}{GRAY}{remainder*'-'}{RESET}]", end="\r")
                 time.sleep(0.5/fileamt)
                 finder = ventBuzzWords if vent else buzzwords
                 onedirisFalse = False if OneDir != "off" else True
@@ -93,7 +99,7 @@ def organize(path,only,OneDir,keyword,strictName):
                                 os.rename(os.path.join(path,i),os.path.join(path,"executables",i))
             print()
 
-            print("done!")
+            print(GREEN+"done!"+RESET)
 
 def unwrapunit(i,absopath):
     for x in [f for f in os.listdir(os.path.join(absopath,i))]:
@@ -126,20 +132,20 @@ def unwrap(path,only,deep,known,onlydir):
     absopath = os.path.abspath(path)
     do_not_execute = False
     if not os.path.isdir(path):
-        print("FATAL: target isn't a directory!")
+        print(RED+"FATAL:"+RESET+" target isn't a directory!")
     else:
         firstOnlydir=onlydir.replace("/","").split(",")
         onlydir =onlydir.split(",")
         dirs = [f for f in os.listdir(path) if os.path.isdir(os.path.join(path, f))] if onlydir[0] == "all" and len(onlydir) == 1 else [f for f in os.listdir(path) if os.path.isdir(os.path.join(path, f)) and f in firstOnlydir]
         if onlydir[0] != "all" and not set(dirs) == set(onlydir) and len(onlydir) > len(dirs):
             diff = [x for x in onlydir if x not in dirs]
-            print(f"WARNING: unresolved dirnames: '{",".join(diff)}' not found!\nContinuing with existing ones...")
+            print(YELLOW+f"WARNING:"+RESET+" unresolved dirnames: '{",".join(diff)}' not found!\nContinuing with existing ones...")
         s = "s" if len(onlydir) > 1 else ""
         if len(dirs) == 0:
             if onlydir[0] == "all":
-                print("FATAL: No directories found to unwrap.")
+                print(RED+"FATAL:"+RESET+" No directories found to unwrap.")
             else:
-                print(f"FATAL: No dirs by the name{s} '{",".join(onlydir)}' were found.")
+                print(RED+f"FATAL:"+RESET+" No dirs by the name{s} '{",".join(onlydir)}' were found.")
             do_not_execute = True
         ventBuzzWords = {}
         vent = False
@@ -151,20 +157,18 @@ def unwrap(path,only,deep,known,onlydir):
                         ventBuzzWords[u] = buzzwords.get(u)
                     vent = True
             if vent == False:
-                print(f"couldn't find only-item '{only}'")
+                print(YELLOW+"WARNING: "+RESET+f"couldn't find only-item '{only}'")
                 do_not_execute = True
         if not do_not_execute:
             loc = "current dir" if path =="." else path
             if vent:
-                print("only unwrapping " + " , ".join(ventBuzzWords.keys()) + " in " + loc + "...")
+                print("only unwrapping " + BLUE+" , ".join(ventBuzzWords.keys()) +RESET+ " in " +BLUE+ loc +RESET+ "...")
             elif onlydir[0] != "all":
-                print(f"only unwrapping the '{",".join(onlydir)}' dir{s}...")
+                print(f"only unwrapping the '{BLUE+",".join(onlydir)+RESET}' dir{s}...")
             elif known:
-                print("only unwrapping known dirs in " + loc +"...")
-            elif path == ".":
-                print("unwrapping current dir...")
+                print("only unwrapping known dirs in " + BLUE+loc +RESET+"...")
             else:
-                print(f"unwrapping {path}...")
+                print(f"unwrapping {BLUE+loc+RESET}...")
             curCyc = 0
             for i in dirs:
                 curCyc += 1
@@ -173,7 +177,7 @@ def unwrap(path,only,deep,known,onlydir):
                 remainder = 30 - progress
                 prprint=progress-1 if progress != 30 else progress
                 Oprint = 1 if prprint != 30 else 0
-                print(f"({curCyc}/{diramt}) [{prprint*"=" + Oprint*"O"+remainder * "-"}]", end="\r")
+                print(f"({BLUE}{curCyc}{RESET}/{BLUE}{fileamt}{RESET}) [{GREEN}{prprint*'='}{Oprint*'O'}{GRAY}{remainder*'-'}{RESET}]", end="\r")
                 time.sleep(0.3 /diramt)
                 finder = ventBuzzWords if vent else buzzwords
                 for u in finder.keys():
@@ -184,7 +188,6 @@ def unwrap(path,only,deep,known,onlydir):
                     if do:
                         if deep:
                             unwrapunit(i,absopath)
-                            #unwrapunit(i,absopath)
                         else:    
                             for x in [f for f in os.listdir(os.path.join(absopath,i)) if os.path.isfile(os.path.join(absopath,i, f))]:
                                 aix = os.path.join(absopath,i,x)
@@ -215,6 +218,6 @@ def unwrap(path,only,deep,known,onlydir):
                                 os.rmdir(os.path.join(absopath,i))
             print()    
 
-            print("done!")
+            print(GREEN+"done!"+RESET)
 
 #test
