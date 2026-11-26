@@ -15,7 +15,103 @@ BLUE="\033[94m"
 GRAY = "\033[38;5;244m"
 SUBTLEGRAY = "\033[38;5;251m"
 
-buzzwords = {".iso":"ISO_images",".py": "python_scripts", ".png": "images", ".jpg": "images",".webp": "images", ".gif": "gifs", ".ico":"icons", ".exe": "executables",".deb": "debian_packages",".zip": "ZIPs",".txt": "text_files",".tar.gz":"tarball_archives",".mov":"videos",".mp4":"videos",".mp3":"audio",".wav":"audio",".md": "markdown_files"}
+buzzwords = {
+".png": "images",
+".jpg":"images" ,
+".webp": "images",
+".bmp":"images",
+".tiff": "images",
+".tif": "images",
+".heic": "images",
+".heif": "images",
+".avif": "images",
+".jxl": "images",
+".psd": "images",
+".svg": "vector_images",
+".ico": "icons",
+".gif": "gifs",
+
+".mov": "videos",
+".mp4": "videos",
+".webm": "videos",
+".mkv": "videos",
+".avi":"videos",
+".flv":"videos",
+".wmv": "videos",
+".m4v":"videos",
+
+
+".mp3": "audio",
+".wav":"audio",
+".flac": "audio",
+".ogg":"audio",
+".m4a":"audio",
+".aac": "audio",
+".opus":"audio",
+".aiff":"audio",
+
+
+".zip": "ZIPs",
+".tar.gz": "tarball_archives",
+".tar": "tarball_archives",
+".7z":"archives",
+".rar":"archives",
+".gz":"gzip_archives",
+".bz2": "bzip2_archives",
+".xz": "xz_archives",
+".zst":"zstd_archives",
+
+
+".exe":"executables",
+".msi":"windows_installers",
+".apk":"android_packages",
+".deb":"debian_packages",
+".rpm":"rpm_packages",
+".appimage": "linux_appimages",
+".dmg": "macos_disk_images",
+".pkg":"macos_packages",
+
+
+".pdf": "pdf_documents",
+".docx":"word_documents",
+".xlsx":"spreadsheet_files",
+".pptx":"presentation_files",
+".epub": "ebook_files",
+".rtf":"rtf_documents",
+".txt":"text_files",
+".md": "markdown_files",
+
+
+".py":"python_scripts",
+".sh":"shell_scripts",
+".js": "javascript_files",
+".ts": "javascript_files",
+".html":"web_files",
+".css":"web_files",
+".java":"source_code",
+".cpp": "source_code",
+".c":"source_code",
+
+".json": "config_files",
+".yaml":"config_files",
+".yml":"config_files",
+".xml":"config_files",
+".csv": "data_files",
+".tsv":"data_files",
+".sqlite": "database_files",
+
+
+".ttf": "font_files",
+".otf":"font_files",
+".woff": "font_files",
+".woff2":"font_files",
+
+
+".iso": "ISO_images",
+".vhd":"virtual_disk_images",
+".vmdk":"virtual_disk_images",
+".qcow2":"virtual_disk_images",
+}   
 
 def organize(path,only,OneDir,keyword,strictName):
     if not os.path.isdir(path):
