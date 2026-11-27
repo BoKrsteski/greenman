@@ -1,3 +1,6 @@
+# TODO Make .sh executable from both os specific and gen dir 
+
+
 # Greenman for CLI!
 
 here you can get the necessary files to connect GreenmanCLI to your PATH. 
